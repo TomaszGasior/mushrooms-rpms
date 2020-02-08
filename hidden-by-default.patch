@@ -1,0 +1,11 @@
+--- nautilus_terminal/schemas/org.flozz.nautilus-terminal.gschema.xml.orig	2020-01-10 13:59:31.000000000 +0100
++++ nautilus_terminal/schemas/org.flozz.nautilus-terminal.gschema.xml	2020-02-08 20:29:46.530804475 +0100
+@@ -2,7 +2,7 @@
+ <schemalist>
+   <schema id="org.flozz.nautilus-terminal" path="/org/flozz/nautilus-terminal/">
+     <key name="default-show-terminal" type="b">
+-      <default>true</default>
++      <default>false</default>
+       <summary>Is Nautilus Terminal visible in new Nautilus windows</summary>
+       <description/>
+     </key>

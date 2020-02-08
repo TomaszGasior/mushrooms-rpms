@@ -2,12 +2,13 @@
 
 Name:           nautilus-terminal
 Version:        3.3.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A terminal embedded in Nautilus, the GNOME's file browser
 
 License:        GPL-3.0
 URL:            https://github.com/flozz/%{name}
 Source0:        https://github.com/flozz/%{name}/archive/v%{version}.zip
+Patch0:         hidden-by-default.patch
 
 BuildRequires:  python3-devel
 Requires:       python3
@@ -28,6 +29,8 @@ Press F4 to open the terminal. Use dconf-editor to edit its settings.
 %prep
 %setup
 
+%patch0
+
 
 %build
 python3 setup.py build
@@ -45,6 +48,9 @@ python3 setup.py install --optimize=1 --root="%{buildroot}"
 
 
 %changelog
+* Sat Feb 8 2020 Tomasz Gąsior
+- Disable terminal by default (downstream patch)
+
 * Sat Feb 8 2020 Tomasz Gąsior
 - Upstream update
 - Added terminal bottom view option
