@@ -1,3 +1,5 @@
+%{?python_disable_dependency_generator}
+
 Name:           nautilus-terminal
 Version:        3.2.3
 Release:        1%{?dist}
