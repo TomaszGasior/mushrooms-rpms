@@ -1,7 +1,7 @@
 %{?python_disable_dependency_generator}
 
 Name:           nautilus-terminal
-Version:        3.2.3
+Version:        3.3.0
 Release:        1%{?dist}
 Summary:        A terminal embedded in Nautilus, the GNOME's file browser
 
@@ -21,6 +21,8 @@ Nautilus Terminal is a terminal embedded into Nautilus, the GNOME's
 file browser. It is always opened in the current folder, and follows
 the navigation (the cd command is automatically executed when you
 navigate to another folder).
+
+Press F4 to open the terminal. Use dconf-editor to edit its settings.
 
 
 %prep
@@ -43,5 +45,9 @@ python3 setup.py install --optimize=1 --root="%{buildroot}"
 
 
 %changelog
+* Sat Feb 8 2020 Tomasz Gąsior
+- Upstream update
+- Added terminal bottom view option
+
 * Sun Nov 17 2019 Tomasz Gąsior
 - Initial
