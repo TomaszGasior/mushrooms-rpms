@@ -12,11 +12,11 @@ License:        GPLv2+
 URL:            https://github.com/danielknobe/blobbyvolley2
 Source0:        https://downloads.sourceforge.net/%{name}/%{name}2-linux-%{version}.tar.gz
 Source1:        %{name}.desktop
-Patch0:         compile-flags.patch
-Patch1:         global-data-dir.patch
-Patch2:         global-data-dir-server.patch
-Patch3:         %{url}/commit/c5329cbc50.patch
-Patch4:         %{url}/commit/b069d193b3.patch
+Patch0:         %{url}/commit/c5329cbc50.patch
+Patch1:         %{url}/commit/b069d193b3.patch
+Patch2:         compile-flags.patch
+Patch3:         global-data-dir.patch
+Patch4:         global-data-dir-server.patch
 
 BuildRequires:  boost-devel
 BuildRequires:  cmake
@@ -26,7 +26,6 @@ BuildRequires:  ImageMagick
 BuildRequires:  mesa-libGL-devel
 BuildRequires:  physfs-devel
 BuildRequires:  SDL2-devel
-BuildArch:      x86_64
 
 
 %description
@@ -36,13 +35,9 @@ There are multiplayer and also single player game modes.
 
 
 %prep
-%setup
-
-%patch0
-%patch1
-%patch2
-%patch3 -p1
-%patch4 -p1
+%autosetup -N
+%autopatch -M1 -p1
+%autopatch -m2 -p0
 
 
 %build
@@ -63,6 +58,7 @@ desktop-file-install %{SOURCE1}
 %{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/%{name}.png
+
 
 %changelog
 * Mon Jan 13 2020 Tomasz Gąsior
