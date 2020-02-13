@@ -27,24 +27,22 @@ Press F4 to open the terminal. Use dconf-editor to edit its settings.
 
 
 %prep
-%setup
-
-%patch0
+%autosetup -p 0
 
 
 %build
-python3 setup.py build
+%py3_build
 
 
 %install
-python3 setup.py install --optimize=1 --root="%{buildroot}"
+%py3_install
 
 
 %files
-/%{_datadir}/glib-2.0/schemas/org.flozz.nautilus-terminal.gschema.xml
-/%{_datadir}/nautilus-python/extensions/nautilus_terminal_extension.py
-/%{python3_sitelib}/nautilus_terminal
-/%{python3_sitelib}/nautilus_terminal*.egg-info
+%{_datadir}/glib-2.0/schemas/org.flozz.nautilus-terminal.gschema.xml
+%{_datadir}/nautilus-python/extensions/nautilus_terminal_extension.py
+%{python3_sitelib}/nautilus_terminal
+%{python3_sitelib}/nautilus_terminal*.egg-info
 
 
 %changelog
