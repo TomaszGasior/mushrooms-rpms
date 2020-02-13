@@ -14,7 +14,6 @@ BuildRequires:  autoconf
 BuildRequires:  gcc
 BuildRequires:  libtool
 BuildRequires:  nasm
-BuildArch:      x86_64
 
 
 %description
@@ -30,14 +29,14 @@ to /opt directory.
 
 
 %prep
-%setup
+%autosetup
 
 
 %build
 autoreconf -fiv
 %set_build_flags
 ./configure --prefix=%{install_path}
-make %{?_smp_mflags}
+%make_build
 
 
 %install
