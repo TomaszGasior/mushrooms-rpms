@@ -30,20 +30,16 @@ You can use `nautilus -q` command.
 
 
 %prep
-%setup -n %{name}-%{git_commit_hash}
+%autosetup -n %{name}-%{git_commit_hash}
 
 
 %build
-mkdir build
-cd build
-%cmake ..
-make
+%cmake .
+%make_build
 
 
 %install
-cd build
 %make_install
-cd ..
 %find_lang %{name}
 
 
