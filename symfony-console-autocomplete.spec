@@ -1,3 +1,8 @@
+# this spec is based on:
+# https://src.fedoraproject.org/rpms/php-Assetic/blob/6f39e013606437e4fdde905d7b9ed32a8607fdf8/f/php-Assetic.spec
+
+%global phpdir %{_datadir}/php
+
 Name:           symfony-console-autocomplete
 Version:        1.3.5
 Release:        1%{?dist}
@@ -7,7 +12,12 @@ License:        MIT
 URL:            https://github.com/bamarni/%{name}
 Source0:        https://github.com/bamarni/%{name}/archive/v%{version}.tar.gz
 
-BuildRequires:  composer
+BuildRequires:  php
+BuildRequires:  php-composer(fedora/autoloader)
+BuildRequires:  php-composer(symfony/console) >= 4
+BuildRequires:  php-composer(symfony/console) < 5
+BuildRequires:  php-composer(symfony/process) >= 4
+BuildRequires:  php-composer(symfony/process) < 5
 Requires:       bash
 Requires:       bash-completion
 BuildArch:      noarch
@@ -21,8 +31,23 @@ Please remember to restart your terminal after installation.
 
 
 %prep
-%setup
-composer install --no-dev
+%autosetup
+
+mkdir vendor
+cat <<'AUTOLOAD' | tee vendor/autoload.php
+<?php
+require_once '%{phpdir}/Fedora/Autoloader/autoload.php';
+
+\Fedora\Autoloader\Autoload::addPsr4(
+    'Bamarni\\Symfony\\Console\\Autocomplete\\',
+    __DIR__.'/../src'
+);
+
+\Fedora\Autoloader\Dependencies::required([
+    '%{phpdir}/Symfony/Component/Console/autoload.php',
+    '%{phpdir}/Symfony/Component/Process/autoload.php',
+]);
+AUTOLOAD
 
 
 %build
@@ -35,7 +60,7 @@ install -m 644 symfony-console %{buildroot}/%{_sysconfdir}/bash_completion.d
 
 
 %files
-/%{_sysconfdir}/bash_completion.d/symfony-console
+%{_sysconfdir}/bash_completion.d/symfony-console
 
 
 %changelog
