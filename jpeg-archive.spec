@@ -2,7 +2,7 @@
 
 Name:           jpeg-archive
 Version:        2.2.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Utilities for archiving JPEGs for long term storage
 
 License:        MIT
@@ -29,6 +29,7 @@ or serving over the web. The goals are:
 
 
 %build
+export CFLAGS="$CFLAGS -fcommon"
 make %{?_smp_mflags}
 
 
@@ -44,5 +45,7 @@ make %{?_smp_mflags}
 
 
 %changelog
+* Sat Apr 11 2020 Tomasz Gąsior
+- Workaround incompatibility with GCC 10
 * Sun Nov 17 2019 Tomasz Gąsior
 - Initial
