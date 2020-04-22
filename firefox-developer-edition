@@ -1,0 +1,61 @@
+#!/usr/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
+
+APP_DIR_PATH=`dirname ${XDG_DATA_HOME:-~/.local/share}`/opt/firefox-developer-edition
+APP_EXEC_PATH=$APP_DIR_PATH/firefox
+
+show_notification()
+{
+    if [[ -n "${3:-}" ]]; then
+        notify-send $1 $2 --icon firefox-developer-edition \
+            --hint string:sound-name:dialog-error --urgency critical
+    else
+        notify-send $1 $2 --icon firefox-developer-edition \
+            --hint string:sound-name:message-new-instant --hint int:transient:1
+    fi
+}
+
+download_and_install_app()
+{
+    local DOWNLOAD_URL="https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64"
+
+    rm -rf $APP_DIR_PATH
+    mkdir -p $APP_DIR_PATH
+
+    show_notification "Firefox Developer Edition will start shortly" "Please wait for download…"
+
+    curl $DOWNLOAD_URL -sL | tar -C $APP_DIR_PATH --strip-components=1 -j -xf - || error="1"
+
+    if [[ -n "${error:-}" ]]; then
+        show_notification "Firefox Developer Edition cannot be started" "There is a problem with download!" "1"
+
+        rm -rf $APP_DIR_PATH
+        exit
+    fi
+}
+
+main()
+{
+    if [[ ! -f $APP_EXEC_PATH ]]; then
+        download_and_install_app
+    fi
+
+    if [[ "${XDG_CURRENT_DESKTOP:-}" == "GNOME" ]] && [[ "${MOZ_DISABLE_WAYLAND:-}" == "" ]]; then
+        export MOZ_ENABLE_WAYLAND=1
+    fi
+
+    # https://bugzilla.mozilla.org/show_bug.cgi?id=1530052
+    if [[ "${XDG_SESSION_TYPE:-}" == "wayland" ]] && [[ -n "${MOZ_ENABLE_WAYLAND:-}" ]]; then
+        sed -e "s#^Name=Firefox#Name=Firefox Developer Edition#g" \
+            $APP_DIR_PATH/application.ini > $APP_DIR_PATH/browser/application.ini
+        mkdir -p $HOME/.mozilla/firefox
+        ln -srf $HOME/.mozilla/firefox $HOME/.mozilla/firefox\ developer\ edition
+
+        exec $APP_EXEC_PATH -app $APP_DIR_PATH/browser/application.ini $@
+    fi
+
+    exec $APP_EXEC_PATH $@
+}
+
+main $@
