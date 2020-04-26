@@ -41,19 +41,8 @@ main()
         download_and_install_app
     fi
 
-    if [[ "${XDG_CURRENT_DESKTOP:-}" == "GNOME" ]] && [[ "${MOZ_DISABLE_WAYLAND:-}" == "" ]]; then
-        export MOZ_ENABLE_WAYLAND=1
-    fi
-
     # https://bugzilla.mozilla.org/show_bug.cgi?id=1530052
-    if [[ "${XDG_SESSION_TYPE:-}" == "wayland" ]] && [[ -n "${MOZ_ENABLE_WAYLAND:-}" ]]; then
-        sed -e "s#^Name=Firefox#Name=Firefox Developer Edition#g" \
-            $APP_DIR_PATH/application.ini > $APP_DIR_PATH/browser/application.ini
-        mkdir -p $HOME/.mozilla/firefox
-        ln -srf $HOME/.mozilla/firefox $HOME/.mozilla/firefox\ developer\ edition
-
-        exec $APP_EXEC_PATH -app $APP_DIR_PATH/browser/application.ini $@
-    fi
+    unset MOZ_ENABLE_WAYLAND
 
     exec $APP_EXEC_PATH $@
 }

@@ -4,7 +4,7 @@
 %define mozilla_commit e8fe8b0af1a7a0c64d28b4e08a9c5509d916759f
 
 Name:           firefox-developer-edition-bin
-Version:        1
+Version:        2
 Release:        1%{?dist}
 Summary:        Firefox Developer Edition binary launcher
 
@@ -57,5 +57,8 @@ cp %{SOURCE3} %{buildroot}%{_datadir}/applications/
 
 
 %changelog
+* Sun Apr 26 2020 Tomasz Gąsior
+- Enforce X11, remove Wayland workaround for
+  https://bugzilla.mozilla.org/show_bug.cgi?id=1530052
 * Wed Apr 22 2020 Tomasz Gąsior
 - Initial
