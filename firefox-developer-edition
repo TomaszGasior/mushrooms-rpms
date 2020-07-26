@@ -2,8 +2,13 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+DOWNLOAD_URL="https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64"
+
 APP_DIR_PATH=`dirname ${XDG_DATA_HOME:-~/.local/share}`/opt/firefox-developer-edition
 APP_EXEC_PATH=$APP_DIR_PATH/firefox
+
+APP_PREFS_DIR_PATH=$APP_DIR_PATH/browser/defaults/preferences
+CUSTOM_PREFS_PATH=`systemd-path system-shared`/firefox-developer-edition/copr-mushrooms-default-prefs.js
 
 show_notification()
 {
@@ -18,8 +23,6 @@ show_notification()
 
 download_and_install_app()
 {
-    local DOWNLOAD_URL="https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64"
-
     rm -rf $APP_DIR_PATH
     mkdir -p $APP_DIR_PATH
 
@@ -33,6 +36,9 @@ download_and_install_app()
         rm -rf $APP_DIR_PATH
         exit
     fi
+
+    mkdir -p $APP_PREFS_DIR_PATH
+    ln -sf $CUSTOM_PREFS_PATH $APP_PREFS_DIR_PATH/
 }
 
 main()
