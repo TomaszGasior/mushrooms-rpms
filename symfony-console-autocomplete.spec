@@ -4,7 +4,7 @@
 %global phpdir %{_datadir}/php
 
 Name:           symfony-console-autocomplete
-Version:        1.3.6
+Version:        1.4.0
 Release:        1%{?dist}
 Summary:        Bash autocompletion for Symfony Console based scripts
 
@@ -14,10 +14,8 @@ Source0:        https://github.com/bamarni/%{name}/archive/v%{version}.tar.gz
 
 BuildRequires:  php
 BuildRequires:  php-composer(fedora/autoloader)
-BuildRequires:  php-composer(symfony/console) >= 4
-BuildRequires:  php-composer(symfony/console) < 5
-BuildRequires:  php-composer(symfony/process) >= 4
-BuildRequires:  php-composer(symfony/process) < 5
+BuildRequires:  php-composer(symfony/console)
+BuildRequires:  php-composer(symfony/process)
 Requires:       bash
 Requires:       bash-completion
 BuildArch:      noarch
@@ -64,6 +62,9 @@ install -m 644 symfony-console %{buildroot}/%{_sysconfdir}/bash_completion.d
 
 
 %changelog
+* Sun Jul 26 2020 Tomasz Gąsior
+- Upstream update
+
 * Thu Mar 5 2020 Tomasz Gąsior
 - Upstream update
 
