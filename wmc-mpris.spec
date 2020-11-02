@@ -26,12 +26,12 @@ downloaded from https://github.com/f1u77y/web-media-controller/releases.
 
 
 %build
-%cmake .
-%make_build
+%cmake
+%cmake_build
 
 
 %install
-%make_install
+%cmake_install
 mv %{buildroot}/usr/lib %{buildroot}/%{_libdir}
 
 
