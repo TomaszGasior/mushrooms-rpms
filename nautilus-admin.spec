@@ -34,12 +34,12 @@ You can use `nautilus -q` command.
 
 
 %build
-%cmake .
-%make_build
+%cmake
+%cmake_build
 
 
 %install
-%make_install
+%cmake_install
 %find_lang %{name}
 
 
