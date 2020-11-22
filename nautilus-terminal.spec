@@ -1,8 +1,8 @@
 %{?python_disable_dependency_generator}
 
 Name:           nautilus-terminal
-Version:        3.3.0
-Release:        2%{?dist}
+Version:        3.4.2
+Release:        1%{?dist}
 Summary:        A terminal embedded in Nautilus, the GNOME's file browser
 
 License:        GPL-3.0
@@ -46,6 +46,10 @@ Press F4 to open the terminal. Use dconf-editor to edit its settings.
 
 
 %changelog
+* Sun Nov 22 2020 Tomasz Gąsior
+- Upstream update
+- New options: terminal toggle shortcut, terminal background and text color
+
 * Sat Feb 8 2020 Tomasz Gąsior
 - Disable terminal by default (downstream patch)
 
