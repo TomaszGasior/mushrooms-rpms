@@ -2,7 +2,7 @@
 
 Name:           jpeg-archive
 Version:        2.2.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Utilities for archiving JPEGs for long term storage
 
 License:        MIT
@@ -12,8 +12,7 @@ Source0:        https://github.com/danielgtaylor/%{name}/archive/v%{version}.zip
 BuildRequires:  autoconf
 BuildRequires:  gcc
 BuildRequires:  libtool
-BuildRequires:  mozjpeg
-Requires:       mozjpeg
+BuildRequires:  mozjpeg-static
 
 
 %description
