@@ -2,7 +2,7 @@
 
 Name:           jpeg-archive
 Version:        2.2.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Utilities for archiving JPEGs for long term storage
 
 License:        MIT
@@ -44,6 +44,8 @@ make %{?_smp_mflags}
 
 
 %changelog
+* Tue Mar 2 2021 Tomasz Gąsior
+- Update the package for newer mozjpeg
 * Sat Apr 11 2020 Tomasz Gąsior
 - Workaround incompatibility with GCC 10
 * Sun Nov 17 2019 Tomasz Gąsior
