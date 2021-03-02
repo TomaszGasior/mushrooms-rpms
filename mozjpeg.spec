@@ -1,7 +1,7 @@
 %global install_path /opt/mozjpeg
 
 Name:           mozjpeg
-Version:        4.0.0
+Version:        4.0.3
 Release:        1%{?dist}
 Summary:        Mozilla JPEG Encoder Project — improved JPEG encoder
 
@@ -17,13 +17,13 @@ BuildRequires:  libpng-static
 
 
 %package devel
-Summary:       Development headers for MozJPEG library
-Requires:      %{name}%{?_isa} = %{version}-%{release}
+Summary:        Development headers for MozJPEG library
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 
 %package static
-Summary:       Static version of MozJPEG library
-Requires:      %{name}-devel%{?_isa} = %{version}-%{release}
+Summary:        Static version of MozJPEG library
+Requires:       %{name}-devel%{?_isa} = %{version}-%{release}
 
 
 %description
@@ -81,6 +81,8 @@ find %{buildroot} -name '*.la' -delete
 
 
 %changelog
+* Tue Mar 2 2021 Tomasz Gąsior
+- Upstream update
 * Sat Dec 5 2020 Tomasz Gąsior
 - Upstream update
 - Split development files into separate packages
