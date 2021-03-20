@@ -42,8 +42,8 @@ require_once '%{phpdir}/Fedora/Autoloader/autoload.php';
 );
 
 \Fedora\Autoloader\Dependencies::required([
-    '%{phpdir}/Symfony/Component/Console/autoload.php',
-    '%{phpdir}/Symfony/Component/Process/autoload.php',
+    '%{phpdir}/Symfony4/Component/Console/autoload.php',
+    '%{phpdir}/Symfony4/Component/Process/autoload.php',
 ]);
 AUTOLOAD
 
