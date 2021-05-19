@@ -1,14 +1,13 @@
 %{?python_disable_dependency_generator}
 
 Name:           nautilus-terminal
-Version:        3.4.2
+Version:        4.0.1
 Release:        1%{?dist}
 Summary:        A terminal embedded in Nautilus, the GNOME's file browser
 
 License:        GPL-3.0
 URL:            https://github.com/flozz/%{name}
 Source0:        https://github.com/flozz/%{name}/archive/v%{version}.zip
-Patch0:         hidden-by-default.patch
 
 BuildRequires:  python3-devel
 Requires:       python3
@@ -37,6 +36,16 @@ Press F4 to open the terminal. Use dconf-editor to edit its settings.
 %install
 %py3_install
 
+# these files were created automatically in previous versions of setup.py
+# currently this is handled in unpackageable manner, so more work for me :)
+install -D -m 644 nautilus_terminal/nautilus_terminal_extension.py \
+  %{buildroot}%{_datadir}/nautilus-python/extensions/nautilus_terminal_extension.py
+install -D -m 644 nautilus_terminal/schemas/org.flozz.nautilus-terminal.gschema.xml \
+  %{buildroot}%{_datadir}/glib-2.0/schemas/org.flozz.nautilus-terminal.gschema.xml
+
+# this installation script is unneeded for end users
+rm %{buildroot}%{_bindir}/nautilus-terminal
+
 
 %files
 %{_datadir}/glib-2.0/schemas/org.flozz.nautilus-terminal.gschema.xml
@@ -46,6 +55,11 @@ Press F4 to open the terminal. Use dconf-editor to edit its settings.
 
 
 %changelog
+* Tue May 18 2021 Tomasz Gąsior
+- Upstream update
+- Downstream patch for terminal disabled by default removed
+  https://github.com/flozz/nautilus-terminal/issues/37
+
 * Sun Nov 22 2020 Tomasz Gąsior
 - Upstream update
 - New options: terminal toggle shortcut, terminal background and text color
