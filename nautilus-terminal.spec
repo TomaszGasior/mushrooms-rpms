@@ -1,7 +1,7 @@
 %{?python_disable_dependency_generator}
 
 Name:           nautilus-terminal
-Version:        4.0.1
+Version:        4.0.2
 Release:        1%{?dist}
 Summary:        A terminal embedded in Nautilus, the GNOME's file browser
 
@@ -30,21 +30,14 @@ Press F4 to open the terminal. Use dconf-editor to edit its settings.
 
 
 %build
+# https://github.com/flozz/nautilus-terminal/issues/63
+rm nautilus_terminal/not_packaged.py
+
 %py3_build
 
 
 %install
 %py3_install
-
-# these files were created automatically in previous versions of setup.py
-# currently this is handled in unpackageable manner, so more work for me :)
-install -D -m 644 nautilus_terminal/nautilus_terminal_extension.py \
-  %{buildroot}%{_datadir}/nautilus-python/extensions/nautilus_terminal_extension.py
-install -D -m 644 nautilus_terminal/schemas/org.flozz.nautilus-terminal.gschema.xml \
-  %{buildroot}%{_datadir}/glib-2.0/schemas/org.flozz.nautilus-terminal.gschema.xml
-
-# this installation script is unneeded for end users
-rm %{buildroot}%{_bindir}/nautilus-terminal
 
 
 %files
@@ -52,9 +45,13 @@ rm %{buildroot}%{_bindir}/nautilus-terminal
 %{_datadir}/nautilus-python/extensions/nautilus_terminal_extension.py
 %{python3_sitelib}/nautilus_terminal
 %{python3_sitelib}/nautilus_terminal*.egg-info
+%{_bindir}/nautilus-terminal
 
 
 %changelog
+* Sun May 23 2021 Tomasz Gąsior
+- New `nautilus-terminal` command for debugging
+
 * Tue May 18 2021 Tomasz Gąsior
 - Upstream update
 - Downstream patch for terminal disabled by default removed
