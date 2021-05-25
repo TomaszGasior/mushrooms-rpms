@@ -38,6 +38,7 @@ rm nautilus_terminal/not_packaged.py
 
 %install
 %py3_install
+rm ${RPM_BUILD_ROOT}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 
 
 %files
