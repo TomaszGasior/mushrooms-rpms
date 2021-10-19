@@ -10,6 +10,7 @@ URL:            https://github.com/flozz/%{name}
 Source0:        https://github.com/flozz/%{name}/archive/v%{version}.zip
 
 BuildRequires:  python3-devel
+BuildRequires:  python3-setuptools
 Requires:       python3
 Requires:       python3-psutil
 Requires:       nautilus-python
