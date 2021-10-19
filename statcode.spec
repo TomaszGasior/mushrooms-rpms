@@ -8,6 +8,7 @@ URL:            https://github.com/shobrook/%{name}
 Source0:        https://github.com/shobrook/%{name}/archive/v%{version}.zip
 
 BuildRequires:  python3-devel
+BuildRequires:  python3-setuptools
 Requires:       python3
 BuildArch:      noarch
 
