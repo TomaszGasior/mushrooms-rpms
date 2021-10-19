@@ -1,3 +1,4 @@
+%global __brp_check_rpaths %{nil}
 %global install_path /opt/mozjpeg
 
 Name:           mozjpeg
