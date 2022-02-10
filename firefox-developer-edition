@@ -47,9 +47,6 @@ main()
         download_and_install_app
     fi
 
-    # https://bugzilla.mozilla.org/show_bug.cgi?id=1530052
-    unset MOZ_ENABLE_WAYLAND
-
     exec $APP_EXEC_PATH $@
 }
 

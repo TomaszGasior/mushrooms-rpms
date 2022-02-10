@@ -4,7 +4,7 @@
 %define mozilla_commit e8fe8b0af1a7a0c64d28b4e08a9c5509d916759f
 
 Name:           firefox-developer-edition-bin
-Version:        3
+Version:        4
 Release:        1%{?dist}
 Summary:        Firefox Developer Edition binary launcher
 
@@ -40,7 +40,8 @@ receive new versions of this software.
 %prep
 sed -i %{SOURCE4} \
     -e 's#firefox#firefox-developer-edition#g' \
-    -e 's#Firefox#Firefox Developer Edition#g'
+    -e 's#Firefox#Firefox Developer Edition#g' \
+    -e '/^\[Desktop Entry\]/ a StartupWMClass=firefox-aurora'
 
 
 %install
@@ -62,6 +63,10 @@ cp %{SOURCE4} %{buildroot}%{_datadir}/applications/
 
 
 %changelog
+* Thu Feb 10 2022 Tomasz Gąsior
+- Fix wrong application icon in the shell.
+- Remove workaround for disabling Wayland.
+
 * Sun Jul 26 2020 Tomasz Gąsior
 - Update desktop icon from Fedora: add "Open the Profile Manager" item.
 - Add downstream default prefs for new installations: make langpacks
