@@ -4,7 +4,7 @@
 %global phpdir %{_datadir}/php
 
 Name:           symfony-console-autocomplete
-Version:        1.4.2
+Version:        1.5.3
 Release:        1%{?dist}
 Summary:        Bash autocompletion for Symfony Console based scripts
 
@@ -62,6 +62,9 @@ install -m 644 symfony-console %{buildroot}/%{_sysconfdir}/bash_completion.d
 
 
 %changelog
+* Sat Feb 19 2022 Tomasz Gąsior
+- Upstream update
+
 * Sun Oct 31 2021 Tomasz Gąsior
 - Upstream update
 
