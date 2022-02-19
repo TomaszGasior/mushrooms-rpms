@@ -1,8 +1,8 @@
-%global git_commit_hash c9d9f9c568ad69525f627709daa13bf731fe2549
+%global git_commit_hash 6ecebbdc0f6dd0f69a6531950abf22b2ac011a54
 
 Name:           hardinfo
 Version:        0.6.alpha
-Release:        1%{?dist}
+Release:        2.%(echo %git_commit_hash | cut -c 1-7)%{?dist}
 Summary:        System profiler and benchmark tool for Linux systems
 
 License:        GPL-2.0
@@ -15,10 +15,11 @@ BuildRequires:  gtk3-devel
 BuildRequires:  json-glib-devel
 BuildRequires:  libsoup-devel
 BuildRequires:  lm_sensors-devel
-Recommends:     hddtemp
-Recommends:     /usr/sbin/dmidecode
-Recommends:     /usr/bin/xrandr
 Recommends:     /usr/bin/glxinfo
+Recommends:     /usr/bin/hddtemp
+Recommends:     /usr/bin/sysbench
+Recommends:     /usr/bin/xrandr
+Recommends:     /usr/sbin/dmidecode
 
 
 %description
@@ -60,5 +61,9 @@ LDFLAGS=${LDFLAGS//-Wl,-z,now/}
 
 
 %changelog
+* Sun Feb 20 2022 Tomasz Gąsior
+- Upstream update from master branch
+- sysbench added to recommended dependencies
+
 * Mon Nov 01 2021 Tomasz Gąsior
 - Initial
