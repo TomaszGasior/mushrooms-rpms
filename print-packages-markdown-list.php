@@ -37,6 +37,17 @@ function rpm_get_field_from_spec_file(string $spec_file_name, string $field): st
     return $output[0];
 }
 
+function rpm_eval(string $expression): string
+{
+    exec(sprintf('rpm --eval "%s" 2> /dev/null', $expression), $output, $exit_code);
+
+    if ($exit_code !== 0) {
+        throw new Exception;
+    }
+
+    return implode(PHP_EOL, $output);
+}
+
 function get_package_names(): array
 {
     return array_filter(git_get_all_branches(), function($branch_name){
@@ -78,7 +89,7 @@ function get_package_version(string $package_name): string
 {
     $rpm_spec_file = get_package_rpm_spec_file($package_name);
     $version = rpm_get_field_from_spec_file($rpm_spec_file, 'version');
-    $release = rpm_get_field_from_spec_file($rpm_spec_file, 'release');
+    $release = str_replace(rpm_eval('%dist'), '', rpm_get_field_from_spec_file($rpm_spec_file, 'release'));
 
     return sprintf('%s-%s', $version, $release);
 }
