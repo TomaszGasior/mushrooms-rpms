@@ -1,8 +1,9 @@
-%global git_commit_hash 6ecebbdc0f6dd0f69a6531950abf22b2ac011a54
+%undefine _hardened_build
+%global git_commit_hash 7390849d125ad7979d7c6e23e4ef7c64060ca6bf
 
 Name:           hardinfo
 Version:        0.6.alpha
-Release:        2.%(echo %git_commit_hash | cut -c 1-7)%{?dist}
+Release:        3.%(echo %git_commit_hash | cut -c 1-7)%{?dist}
 Summary:        System profiler and benchmark tool for Linux systems
 
 License:        GPL-2.0
@@ -39,9 +40,6 @@ For some features the application must be ran as root user!
 
 
 %build
-LDFLAGS="%{build_ldflags}"
-LDFLAGS=${LDFLAGS//-Wl,-z,now/}
-
 %cmake -DHARDINFO_GTK3=1
 %cmake_build
 
@@ -61,6 +59,9 @@ LDFLAGS=${LDFLAGS//-Wl,-z,now/}
 
 
 %changelog
+* Sat Jun 18 2022 Tomasz Gąsior
+- Upstream update from master branch
+
 * Sun Feb 20 2022 Tomasz Gąsior
 - Upstream update from master branch
 - sysbench added to recommended dependencies
