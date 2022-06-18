@@ -1,8 +1,9 @@
 %global debug_package %{nil}
+%undefine _hardened_build
 
 Name:           jpeg-archive
 Version:        2.2.0
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Utilities for archiving JPEGs for long term storage
 
 License:        MIT
@@ -29,7 +30,7 @@ or serving over the web. The goals are:
 
 %build
 export CFLAGS="$CFLAGS -fcommon"
-make %{?_smp_mflags}
+%make_build
 
 
 %install
@@ -44,6 +45,8 @@ make %{?_smp_mflags}
 
 
 %changelog
+* Sat Jun 18 2022 Tomasz Gąsior
+- Fixed incompatibility with Fedora 36, using proper compile flags
 * Tue Mar 2 2021 Tomasz Gąsior
 - Update the package for newer mozjpeg
 * Sat Apr 11 2020 Tomasz Gąsior
