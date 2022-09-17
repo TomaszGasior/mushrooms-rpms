@@ -1,9 +1,9 @@
 %undefine _hardened_build
-%global git_commit_hash 7390849d125ad7979d7c6e23e4ef7c64060ca6bf
+%global git_commit_hash 10f9789e95b735931805b7eb684ae43ac6f29353
 
 Name:           hardinfo
 Version:        0.6.alpha
-Release:        3.%(echo %git_commit_hash | cut -c 1-7)%{?dist}
+Release:        4.%(echo %git_commit_hash | cut -c 1-7)%{?dist}
 Summary:        System profiler and benchmark tool for Linux systems
 
 License:        GPL-2.0
@@ -59,6 +59,9 @@ For some features the application must be ran as root user!
 
 
 %changelog
+* Sat Sep 17 2022 Tomasz Gąsior
+- Upstream update from master branch
+
 * Sat Jun 18 2022 Tomasz Gąsior
 - Upstream update from master branch
 
