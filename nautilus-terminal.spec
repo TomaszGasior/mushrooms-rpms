@@ -2,7 +2,7 @@
 
 Name:           nautilus-terminal
 Version:        4.0.6
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A terminal embedded in Nautilus, the GNOME's file browser
 
 License:        GPL-3.0
@@ -14,6 +14,7 @@ BuildRequires:  python3-setuptools
 Requires:       python3
 Requires:       python3-psutil
 Requires:       nautilus-python
+Requires:       nautilus < 43~
 BuildArch:      noarch
 Recommends:     dconf-editor
 
