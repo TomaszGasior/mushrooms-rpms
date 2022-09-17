@@ -2,7 +2,7 @@
 
 Name:           nautilus-admin
 Version:        1.1.9
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Extension for Nautilus to do administrative operations
 
 License:        GPL-3.0
@@ -14,6 +14,7 @@ BuildRequires:  gettext
 Requires:       python3
 Requires:       nautilus-python
 Requires:       gedit
+Requires:       nautilus < 43~
 BuildArch:      noarch
 
 
