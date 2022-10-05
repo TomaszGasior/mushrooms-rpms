@@ -1,13 +1,13 @@
 %{?python_disable_dependency_generator}
 
 Name:           nautilus-terminal
-Version:        4.0.6
-Release:        3%{?dist}
+Version:        4.1.0
+Release:        1%{?dist}
 Summary:        A terminal embedded in Nautilus, the GNOME's file browser
 
 License:        GPL-3.0
 URL:            https://github.com/flozz/%{name}
-Source0:        https://github.com/flozz/nautilus-terminal/archive/refs/tags/v%{version}.zip
+Source0:        https://github.com/flozz/%{name}/archive/v%{version}.zip
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
@@ -52,6 +52,9 @@ rm nautilus_terminal/not_packaged.py
 
 
 %changelog
+* Wed Oct 5 2022 Tomasz Gąsior
+- Upstream update
+
 * Sun May 23 2021 Tomasz Gąsior
 - New `nautilus-terminal` command for debugging
 
