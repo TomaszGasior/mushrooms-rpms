@@ -1,6 +1,6 @@
 %global library_name libinklevel
-%global library_version 0.9.3
-%global library_release 3
+%global library_version 0.9.5
+%global library_release 1
 
 
 Name:           ink
@@ -24,7 +24,9 @@ URL:            http://libinklevel.sourceforge.net/
 Summary:        Library for checking the ink level of your printer
 Source1:        https://downloads.sourceforge.net/%{library_name}/%{library_name}-%{library_version}.tar.gz
 Requires:       libusb1
+Requires:       libxml2
 BuildRequires:  libusb1-devel
+BuildRequires:  libxml2-devel
 
 
 %package -n %{library_name}-devel
@@ -120,5 +122,8 @@ popd
 
 
 %changelog
+* Fri Mar 24 2023 Tomasz Gąsior
+- New release of libinklevel library with expanded printer support
+
 * Sun Feb 09 2020 Tomasz Gąsior
 - Initial
