@@ -1,11 +1,11 @@
 %global debug_package %{nil}
 %undefine _hardened_build
 
-%global mozjpeg_version 4.0.3
+%global mozjpeg_version 4.1.1
 
 Name:           jpeg-archive
 Version:        2.2.0
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        Utilities for archiving JPEGs for long term storage
 
 License:        MIT BSD
@@ -58,6 +58,9 @@ export MOZJPEG_PREFIX=$PWD/mozjpeg-%{mozjpeg_version}
 
 
 %changelog
+* Sat Mar 25 2023 Tomasz Gąsior
+- Upgraded mozjpeg included in jpeg-archive
+
 * Sat Jun 18 2022 Tomasz Gąsior
 - Fixed incompatibility with Fedora 36, using proper compile flags
 
