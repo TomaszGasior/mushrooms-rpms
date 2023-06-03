@@ -1,9 +1,9 @@
 %undefine _hardened_build
-%global git_commit_hash 2834bf97172427d0313cdb14c594e932b9a9e011
+%global git_commit_hash 45fa969ad76a8909db5d4f41e5d3fa25e656b888
 
 Name:           hardinfo
 Version:        0.6.alpha
-Release:        5.%(echo %git_commit_hash | cut -c 1-7)%{?dist}
+Release:        6.%(echo %git_commit_hash | cut -c 1-7)%{?dist}
 Summary:        System profiler and benchmark tool for Linux systems
 
 License:        GPL-2.0
