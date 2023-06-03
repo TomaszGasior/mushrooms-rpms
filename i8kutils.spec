@@ -1,5 +1,10 @@
+%{!?tcl_version: %global tcl_version %(echo 'puts $tcl_version' | tclsh)}
+%{!?tcl_sitelib: %global tcl_sitelib %{_datadir}/tcl%(echo %tcl_version | cut -d '.' -f 1)/%{tcl_version}}
+
+%define debug_package %{nil}
+
 Name:           i8kutils
-Version:        1.44
+Version:        1.50
 Release:        1%{?dist}
 Summary:        Fan control for some Dell laptops
 
@@ -10,6 +15,7 @@ Source0:        https://github.com/Wer-Wolf/%{name}/archive/v%{version}.zip
 BuildRequires:  gcc
 BuildRequires:  meson
 BuildRequires:  systemd
+BuildRequires:  tcl
 Requires:       tcl
 Requires:       tcllib
 Requires:       acpi
@@ -30,7 +36,7 @@ The i8kutils package includes the following utilities:
 
 
 %build
-%meson -Dsysvinit_support=disabled
+%meson -Dsysvinit_support=disabled -Dmoduledir=%{tcl_sitelib}
 %meson_build
 
 
@@ -44,9 +50,14 @@ The i8kutils package includes the following utilities:
 %{_unitdir}/i8kmon@.service
 %{_mandir}/man1/i8k*
 %{_udevrulesdir}/50-i8kmon.rules
+%{tcl_sitelib}/i8k/hwmon-1.0.tm
+%{tcl_sitelib}/i8k/thermal-1.0.tm
 
 
 %changelog
+* Sat Jun 03 2023 Tomasz Gąsior
+- Upstream update: better security, ondemand option from command line
+
 * Thu Mar 30 2023 Tomasz Gąsior
 - Dead upstream from vitorafsr replaced with active fork from Wer-Wolf
 
