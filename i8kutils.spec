@@ -4,7 +4,7 @@
 %define debug_package %{nil}
 
 Name:           i8kutils
-Version:        1.50
+Version:        1.51
 Release:        1%{?dist}
 Summary:        Fan control for some Dell laptops
 
@@ -47,7 +47,7 @@ The i8kutils package includes the following utilities:
 %files
 %config(noreplace) %{_sysconfdir}/i8kmon.conf
 %{_bindir}/i8k*
-%{_unitdir}/i8kmon@.service
+%{_unitdir}/i8kmon.service
 %{_mandir}/man1/i8k*
 %{_udevrulesdir}/50-i8kmon.rules
 %{tcl_sitelib}/i8k/hwmon-1.0.tm
@@ -55,6 +55,9 @@ The i8kutils package includes the following utilities:
 
 
 %changelog
+* Sat Jun 17 2023 Tomasz Gąsior
+- Upstream update: easier to disable systemd service
+
 * Sat Jun 03 2023 Tomasz Gąsior
 - Upstream update: better security, ondemand option from command line
 
