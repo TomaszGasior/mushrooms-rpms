@@ -1,20 +1,19 @@
-%global git_commit_hash 8b2e8ae72877b8060a8b5593efbe53213c075415
+%global git_commit_hash f736e9d7a13517f92afa36e37f27e809d66047d7
 
 Name:           nautilus-admin
 Version:        1.1.9
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Extension for Nautilus to do administrative operations
 
 License:        GPL-3.0
-URL:            https://github.com/adekmaulana/%{name}
-Source0:        https://github.com/adekmaulana/%{name}/archive/%{git_commit_hash}.zip
+URL:            https://github.com/MacTavishAO/nautilus-admin-gtk4
+Source0:        https://github.com/MacTavishAO/nautilus-admin-gtk4/archive/%{git_commit_hash}.zip
 
 BuildRequires:  cmake
 BuildRequires:  gettext
 Requires:       python3
 Requires:       nautilus-python
 Requires:       gedit
-Requires:       nautilus < 43~
 BuildArch:      noarch
 
 
@@ -31,7 +30,7 @@ You can use `nautilus -q` command.
 
 
 %prep
-%autosetup -n %{name}-%{git_commit_hash}
+%autosetup -n nautilus-admin-gtk4-%{git_commit_hash}
 
 
 %build
@@ -49,6 +48,9 @@ You can use `nautilus -q` command.
 
 
 %changelog
+* Wed Jul 26 2023 Tomasz Gąsior
+- Change upstream from abandoned repository to fork,
+  making this package working with GTK4-based Nautilus.
 * Sun Jan 10 2021 Tomasz Gąsior
 - Change upstream from abandoned repository to fork,
   making this package working with current Python.
