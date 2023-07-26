@@ -2,7 +2,7 @@
 
 Name:           nautilus-admin
 Version:        1.1.9
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Extension for Nautilus to do administrative operations
 
 License:        GPL-3.0
@@ -13,7 +13,7 @@ BuildRequires:  cmake
 BuildRequires:  gettext
 Requires:       python3
 Requires:       nautilus-python
-Requires:       gedit
+Requires:       gnome-text-editor
 BuildArch:      noarch
 
 
@@ -22,7 +22,7 @@ Nautilus Admin is a simple Python extension for the Nautilus file
 manager that adds some administrative actions to the right-click menu:
 * Open as Administrator: opens a folder in a new Nautilus window running
 with administrator (root) privileges.
-* Edit as Administrator: opens a file in a Gedit window running with
+* Edit as Administrator: opens a file in a text editor window running with
 administrator (root) privileges.
 
 Please remember to restart Nautilus after installation.
@@ -34,7 +34,7 @@ You can use `nautilus -q` command.
 
 
 %build
-%cmake
+%cmake -DGEDIT_PATH=%{_bindir}/gnome-text-editor -DNAUTILUS_PATH=%{_bindir}/nautilus
 %cmake_build
 
 
@@ -48,6 +48,8 @@ You can use `nautilus -q` command.
 
 
 %changelog
+* Wed Jul 26 2023 Tomasz Gąsior
+- Use gnome-text-editor instead of gedit.
 * Wed Jul 26 2023 Tomasz Gąsior
 - Change upstream from abandoned repository to fork,
   making this package working with GTK4-based Nautilus.
