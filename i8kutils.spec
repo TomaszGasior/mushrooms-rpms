@@ -4,7 +4,7 @@
 %define debug_package %{nil}
 
 Name:           i8kutils
-Version:        1.51
+Version:        1.52
 Release:        1%{?dist}
 Summary:        Fan control for some Dell laptops
 
