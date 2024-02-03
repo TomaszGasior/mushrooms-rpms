@@ -4,7 +4,7 @@
 %define debug_package %{nil}
 
 Name:           i8kutils
-Version:        1.52
+Version:        1.55
 Release:        1%{?dist}
 Summary:        Fan control for some Dell laptops
 
@@ -55,6 +55,9 @@ The i8kutils package includes the following utilities:
 
 
 %changelog
+* Sat Feb 03 2024 Tomasz Gąsior
+- Upstream update: added support for changing fan control mode
+
 * Sat Jun 17 2023 Tomasz Gąsior
 - Upstream update: easier to disable systemd service
 
