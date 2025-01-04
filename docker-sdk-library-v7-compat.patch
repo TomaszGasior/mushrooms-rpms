@@ -1,0 +1,30 @@
+--- compose/cli/docker_client.py	2021-05-10 12:30:43.000000000 +0200
++++ compose/cli/docker_client.py	2025-01-04 13:41:15.629309022 +0100
+@@ -119,11 +119,11 @@
+     """
+     Returns a docker-py client configured using environment variables
+     according to the same logic as the official Docker client.
+     """
+     try:
+-        kwargs = kwargs_from_env(environment=environment, ssl_version=tls_version)
++        kwargs = kwargs_from_env(environment=environment)
+     except TLSParameterError:
+         raise UserError(
+             "TLS configuration is invalid - make sure your DOCKER_TLS_VERIFY "
+             "and DOCKER_CERT_PATH are set correctly.\n"
+             "You might need to run `eval \"$(docker-machine env default)\"`")
+--- compose/service.py	2021-05-10 12:30:43.000000000 +0200
++++ compose/service.py	2025-01-04 17:08:18.852722772 +0100
+@@ -1574,11 +1574,11 @@
+     }
+ 
+     image_volumes = [
+         VolumeSpec.parse(volume)
+         for volume in
+-        container.image_config['ContainerConfig'].get('Volumes') or {}
++        container.image_config['Config'].get('Volumes') or {}
+     ]
+ 
+     for volume in set(volumes_option + image_volumes):
+         # No need to preserve host volumes
+         if volume.external:
