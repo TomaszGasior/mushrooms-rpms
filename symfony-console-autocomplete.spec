@@ -5,7 +5,7 @@
 
 Name:           symfony-console-autocomplete
 Version:        1.5.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Bash autocompletion for Symfony Console based scripts
 
 License:        MIT
@@ -42,8 +42,7 @@ require_once '%{phpdir}/Fedora/Autoloader/autoload.php';
 );
 
 \Fedora\Autoloader\Dependencies::required([
-    '%{phpdir}/Symfony4/Component/Console/autoload.php',
-    '%{phpdir}/Symfony4/Component/Process/autoload.php',
+    '%{phpdir}/Symfony4/Component/autoload.php',
 ]);
 AUTOLOAD
 
