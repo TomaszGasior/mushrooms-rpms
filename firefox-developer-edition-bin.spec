@@ -5,7 +5,7 @@
 
 Name:           firefox-developer-edition-bin
 Version:        4
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Firefox Developer Edition binary launcher
 
 License:        MPLv1.1 or GPLv2+ or LGPLv2+
@@ -24,7 +24,7 @@ Requires:       /usr/bin/sed
 Requires:       /usr/bin/ln
 Requires:       /usr/bin/systemd-path
 BuildRequires:  /usr/bin/sed
-BuildArch:      x86_64
+ExclusiveArch:  x86_64
 
 
 %description
