@@ -28,7 +28,7 @@ download_and_install_app()
 
     show_notification "Firefox Developer Edition will start shortly" "Please wait for download…"
 
-    curl $DOWNLOAD_URL -sL | tar -C $APP_DIR_PATH --strip-components=1 -j -xf - || error="1"
+    curl $DOWNLOAD_URL -sL | bsdtar -C $APP_DIR_PATH --strip-components=1 -xf - || error="1"
 
     if [[ -n "${error:-}" ]]; then
         show_notification "Firefox Developer Edition cannot be started" "There is a problem with download!" "1"

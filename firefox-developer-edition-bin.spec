@@ -4,8 +4,8 @@
 %define mozilla_commit e8fe8b0af1a7a0c64d28b4e08a9c5509d916759f
 
 Name:           firefox-developer-edition-bin
-Version:        4
-Release:        2%{?dist}
+Version:        5
+Release:        1%{?dist}
 Summary:        Firefox Developer Edition binary launcher
 
 License:        MPLv1.1 or GPLv2+ or LGPLv2+
@@ -18,7 +18,7 @@ Source4:        https://src.fedoraproject.org/rpms/firefox/raw/%{fedora_commit}/
 
 Requires:       /usr/bin/bash
 Requires:       /usr/bin/curl
-Requires:       /usr/bin/tar
+Requires:       /usr/bin/bsdtar
 Requires:       /usr/bin/dirname
 Requires:       /usr/bin/sed
 Requires:       /usr/bin/ln
@@ -63,6 +63,9 @@ cp %{SOURCE4} %{buildroot}%{_datadir}/applications/
 
 
 %changelog
+* Tue Jan 21 2025 Tomasz Gąsior
+- Fix broken downloader script.
+
 * Thu Feb 10 2022 Tomasz Gąsior
 - Fix wrong application icon in the shell.
 - Remove workaround for disabling Wayland.
