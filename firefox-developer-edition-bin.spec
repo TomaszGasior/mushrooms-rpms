@@ -1,10 +1,10 @@
 # This specfile steals some files from Fedora RPM package:
 # https://src.fedoraproject.org/rpms/firefox/
-%define fedora_commit b0f1086cdfa2d1645864f0094661c425f677d795
+%define fedora_commit 28fda94a3b63fda0487acea5c978e6e6c18418d4
 %define mozilla_commit e8fe8b0af1a7a0c64d28b4e08a9c5509d916759f
 
 Name:           firefox-developer-edition-bin
-Version:        5
+Version:        6
 Release:        1%{?dist}
 Summary:        Firefox Developer Edition binary launcher
 
@@ -41,7 +41,7 @@ receive new versions of this software.
 sed -i %{SOURCE4} \
     -e 's#firefox#firefox-developer-edition#g' \
     -e 's#Firefox#Firefox Developer Edition#g' \
-    -e '/^\[Desktop Entry\]/ a StartupWMClass=firefox-aurora'
+    -e '/^\[Desktop Entry\]/ a StartupWMClass=firefox-dev'
 
 
 %install
