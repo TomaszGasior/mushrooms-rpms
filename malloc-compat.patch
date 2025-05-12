@@ -1,0 +1,15 @@
+--- malloc.c	2018-07-14 17:19:04.000000000 +0200
++++ malloc.c	2025-05-11 20:34:17.253449586 +0200
+@@ -1,11 +1,11 @@
+ #include <config.h>
+ #undef malloc
+      
+ #include <sys/types.h>
+      
+-void *malloc ();
++#include <stdlib.h>
+      
+ /* Allocate an N-byte block of memory from the heap.
+    If N is zero, allocate a 1-byte block.  */
+      
+ void * rpl_malloc (size_t n) {

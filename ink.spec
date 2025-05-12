@@ -5,12 +5,13 @@
 
 Name:           ink
 Version:        0.5.3
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Ink is a program to display the ink level of printers
 
 License:        GPL
 URL:            http://ink.sourceforge.net/
 Source0:        https://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Patch0:         malloc-compat.patch
 
 Requires:       libinklevel
 BuildRequires:  autoconf
