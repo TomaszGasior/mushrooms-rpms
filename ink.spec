@@ -1,5 +1,5 @@
 %global library_name libinklevel
-%global library_version 0.9.5
+%global library_version 0.9.7
 %global library_release 1
 
 
@@ -123,6 +123,10 @@ popd
 
 
 %changelog
+* Mon May 12 2025 Tomasz Gąsior
+- Important bugfix for a regression bug with Canon printers
+  like the MP280 and MG3600 series and probably other ones
+
 * Fri Mar 24 2023 Tomasz Gąsior
 - New release of libinklevel library with expanded printer support
 
