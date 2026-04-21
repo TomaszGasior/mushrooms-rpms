@@ -1,11 +1,14 @@
+%global _cmake_generator "Unix Makefiles"
+ 
 Name:           dfc
 Version:        3.1.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Report file system space usage information with style
 
 License:        BSD 3-Clause
 URL:            https://github.com/Rolinh/%{name}
 Source0:        https://github.com/Rolinh/%{name}/archive/v%{version}.tar.gz
+Patch0:         https://github.com/Rolinh/%{name}/commit/b14e3162963d5edefe9ab293f97fd21fba08c496.patch
 
 BuildRequires:  gcc
 BuildRequires:  cmake
@@ -41,5 +44,8 @@ filtering options, the ability to show mount options and so on.
 
 
 %changelog
+* Tue Apr 21 2026 Tomasz Gąsior
+- Packaging changes for F44
+
 * Sun Jul 26 2020 Tomasz Gąsior
 - Initial
