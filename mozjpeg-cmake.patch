@@ -1,0 +1,10 @@
+--- a/mozjpeg-4.1.1/CMakeLists.txt	2026-05-02 19:36:04.039604184 +0200
++++ b/mozjpeg-4.1.1/CMakeLists.txt	2026-05-02 19:36:14.444233605 +0200
+@@ -1,6 +1,6 @@
+-cmake_minimum_required(VERSION 2.8.12)
++cmake_minimum_required(VERSION 3.5)
+ # When using CMake 3.4 and later, don't export symbols from executables unless
+ # the CMAKE_ENABLE_EXPORTS variable is set.
+ if(POLICY CMP0065)
+   cmake_policy(SET CMP0065 NEW)
+ endif()

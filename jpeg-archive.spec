@@ -1,3 +1,4 @@
+%global _cmake_generator "Unix Makefiles"
 %global debug_package %{nil}
 %undefine _hardened_build
 
@@ -5,13 +6,14 @@
 
 Name:           jpeg-archive
 Version:        2.2.0
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        Utilities for archiving JPEGs for long term storage
 
 License:        MIT BSD
 URL:            https://github.com/danielgtaylor/%{name}
 Source0:        https://github.com/danielgtaylor/%{name}/archive/v%{version}.zip
 Source1:        https://github.com/mozilla/mozjpeg/archive/v%{mozjpeg_version}.zip
+Patch0:         mozjpeg-cmake.patch
 
 BuildRequires:  autoconf
 BuildRequires:  gcc
@@ -31,7 +33,7 @@ or serving over the web. The goals are:
 
 
 %prep
-%autosetup -a 1
+%autosetup -a 1 -p 1
 
 
 %build
@@ -58,6 +60,9 @@ export MOZJPEG_PREFIX=$PWD/mozjpeg-%{mozjpeg_version}
 
 
 %changelog
+* Sat May 2 2026 Tomasz Gąsior
+- Packaging changes for F44
+
 * Sat Mar 25 2023 Tomasz Gąsior
 - Upgraded mozjpeg included in jpeg-archive
 
