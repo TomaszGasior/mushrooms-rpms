@@ -1,21 +1,14 @@
-# this spec is based on:
-# https://src.fedoraproject.org/rpms/php-Assetic/blob/6f39e013606437e4fdde905d7b9ed32a8607fdf8/f/php-Assetic.spec
-
-%global phpdir %{_datadir}/php
-
 Name:           symfony-console-autocomplete
 Version:        1.5.5
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Bash autocompletion for Symfony Console based scripts
 
 License:        MIT
 URL:            https://github.com/bamarni/%{name}
 Source0:        https://github.com/bamarni/%{name}/archive/v%{version}.tar.gz
+Patch0:         plain-php-script.patch
 
-BuildRequires:  php
-BuildRequires:  php-composer(fedora/autoloader)
-BuildRequires:  php-composer(symfony/console)
-BuildRequires:  php-composer(symfony/process)
+BuildRequires:  php-cli
 Requires:       bash
 Requires:       bash-completion
 BuildArch:      noarch
@@ -29,26 +22,11 @@ Please remember to restart your terminal after installation.
 
 
 %prep
-%autosetup
-
-mkdir vendor
-cat <<'AUTOLOAD' | tee vendor/autoload.php
-<?php
-require_once '%{phpdir}/Fedora/Autoloader/autoload.php';
-
-\Fedora\Autoloader\Autoload::addPsr4(
-    'Bamarni\\Symfony\\Console\\Autocomplete\\',
-    __DIR__.'/../src'
-);
-
-\Fedora\Autoloader\Dependencies::required([
-    '%{phpdir}/Symfony4/Component/autoload.php',
-]);
-AUTOLOAD
+%autosetup -p 0
 
 
 %build
-bin/symfony-autocomplete > symfony-console
+php resources/bash/default.php > symfony-console
 
 
 %install
@@ -61,6 +39,9 @@ install -m 644 symfony-console %{buildroot}/%{_sysconfdir}/bash_completion.d
 
 
 %changelog
+* Sun May 3 2026 Tomasz Gąsior
+- Packaging update
+
 * Fri Dec 23 2022 Tomasz Gąsior
 - Upstream update
 

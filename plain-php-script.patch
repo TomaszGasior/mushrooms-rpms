@@ -1,0 +1,49 @@
+diff -U5 -r resources/bash/default.php resources/bash/default.php
+--- resources/bash/default.php	2022-12-21 17:40:50.000000000 +0100
++++ resources/bash/default.php	2026-05-03 11:45:28.092180395 +0200
+@@ -1,5 +1,20 @@
++<?php
++$vars['tools'] = array(
++    'console',
++    'acli',
++    'artisan',
++    'behat',
++    'composer',
++    'dep',
++    'magento',
++    'php-cs-fixer',
++    'phpspec',
++    'roadiz',
++    'robo',
++);
++?>
+ _symfony()
+ {
+     local cur script com opts words
+     COMPREPLY=()
+     _get_comp_words_by_ref -n : cur words
+diff -U5 -r src/DumpCommand.php src/DumpCommand.php
+--- src/DumpCommand.php	2022-12-21 17:40:50.000000000 +0100
++++ src/DumpCommand.php	2026-05-03 11:44:45.481599998 +0200
+@@ -47,21 +47,10 @@
+         if (!$script) {
+             if ($input->getOption('disable-default-tools')) {
+                 $tools = array();
+             } else {
+                 $tools = array(
+-                    'console',
+-                    'acli',
+-                    'artisan',
+-                    'behat',
+-                    'composer',
+-                    'dep',
+-                    'magento',
+-                    'php-cs-fixer',
+-                    'phpspec',
+-                    'roadiz',
+-                    'robo',
+                 );
+             }
+ 
+             if ($extraTools = $input->getOption('aliases')) {
+                 $extraTools = array_filter(preg_split('/\s+/', implode(' ', $extraTools)));
