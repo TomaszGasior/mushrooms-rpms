@@ -1,6 +1,6 @@
 Name:           statcode
 Version:        2.0.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Man pages for HTTP status codes
 
 License:        MIT
@@ -9,6 +9,7 @@ Source0:        https://github.com/shobrook/%{name}/archive/v%{version}.zip
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
+BuildRequires:  python3-pip
 Requires:       python3
 BuildArch:      noarch
 
@@ -26,16 +27,15 @@ explanation of your HTTP response without leaving the terminal.
 
 
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
+%pyproject_save_files -l statcode
 
 
-%files
-%{python3_sitelib}/statcode
-%{python3_sitelib}/statcode*.egg-info
+%files -f %{pyproject_files}
 %{_bindir}/statcode
 
 
