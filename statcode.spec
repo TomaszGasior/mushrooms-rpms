@@ -1,11 +1,12 @@
 Name:           statcode
 Version:        2.0.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Man pages for HTTP status codes
 
 License:        MIT
 URL:            https://github.com/shobrook/%{name}
 Source0:        https://github.com/shobrook/%{name}/archive/v%{version}.zip
+Patch0:         urwid-compat.patch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
@@ -23,7 +24,7 @@ explanation of your HTTP response without leaving the terminal.
 
 
 %prep
-%autosetup
+%autosetup -p 0
 
 
 %build
@@ -40,5 +41,8 @@ explanation of your HTTP response without leaving the terminal.
 
 
 %changelog
+* Sun May 3 2026 Tomasz Gąsior
+- Fix crash caused by incompatibility with newer urwid
+
 * Thu Feb 13 2020 Tomasz Gąsior
 - Initial

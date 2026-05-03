@@ -1,0 +1,15 @@
+--- statcode/statcode.py	2026-05-03 12:27:19.486156940 +0200
++++ statcode/statcode.py	2026-05-03 12:27:37.612314719 +0200
+@@ -52,11 +52,11 @@
+         self._trim_top = 0
+         self._scroll_action = None
+         self._forward_keypress = None
+         self._old_cursor_coords = None
+         self._rows_max_cached = 0
+-        self.__super.__init__(widget)
++        super().__init__(widget)
+ 
+     def render(self, size, focus=False):
+         maxcol, maxrow = size
+ 
+         # Render complete original widget
