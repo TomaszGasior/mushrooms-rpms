@@ -2,12 +2,13 @@
 
 Name:           nautilus-admin
 Version:        1.1.9
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Extension for Nautilus to do administrative operations
 
 License:        GPL-3.0
 URL:            https://github.com/MacTavishAO/nautilus-admin-gtk4
 Source0:        https://github.com/MacTavishAO/nautilus-admin-gtk4/archive/%{git_commit_hash}.zip
+Patch0:         cmake.patch
 
 BuildRequires:  cmake
 BuildRequires:  gettext
@@ -48,13 +49,19 @@ You can use `nautilus -q` command.
 
 
 %changelog
+* Sun May 3 2026 Tomasz Gąsior
+- Packaging changes for F44.
+
 * Wed Jul 26 2023 Tomasz Gąsior
 - Use gnome-text-editor instead of gedit.
+
 * Wed Jul 26 2023 Tomasz Gąsior
 - Change upstream from abandoned repository to fork,
   making this package working with GTK4-based Nautilus.
+
 * Sun Jan 10 2021 Tomasz Gąsior
 - Change upstream from abandoned repository to fork,
   making this package working with current Python.
+
 * Mon Nov 18 2019 Tomasz Gąsior
 - Initial

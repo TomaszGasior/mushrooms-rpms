@@ -1,0 +1,10 @@
+--- CMakeLists.txt	2022-10-28 01:26:30.000000000 +0200
++++ CMakeLists.txt	2026-05-03 10:49:23.945610516 +0200
+@@ -1,6 +1,6 @@
+-cmake_minimum_required(VERSION 2.6)
++cmake_minimum_required(VERSION 3.5)
+ project(NautilusAdmin NONE)
+ find_package(Gettext REQUIRED)
+ 
+ # Configurable paths
+ set(NAUTILUS_PATH "/usr/bin/nautilus" CACHE FILEPATH "nautilus program path.")
