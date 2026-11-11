@@ -6,7 +6,7 @@
 
 Name:           jpeg-archive
 Version:        2.2.0
-Release:        9%{?dist}
+Release:        10%{?dist}
 Summary:        Utilities for archiving JPEGs for long term storage
 
 License:        MIT BSD
@@ -15,6 +15,8 @@ Source0:        https://github.com/danielgtaylor/%{name}/archive/v%{version}.zip
 Source1:        https://github.com/mozilla/mozjpeg/archive/v%{mozjpeg_version}.zip
 Patch0:         mozjpeg-cmake.patch
 Patch1:         gcc-10.patch
+Patch2:         jpeg-recompress-terminate-early.patch
+Patch3:         heap-buffer-overflow-smallfry.patch
 
 BuildRequires:  autoconf
 BuildRequires:  gcc
@@ -60,6 +62,9 @@ export MOZJPEG_PREFIX=$PWD/mozjpeg-%{mozjpeg_version}
 
 
 %changelog
+* Wed Nov 11 2026 Tomasz Gąsior
+- Backport unreleased bugfixes
+
 * Wed Nov 11 2026 Tomasz Gąsior
 - Apply upstream patch for compatibility with GCC 10
 

@@ -1,0 +1,28 @@
+From 8da4bf76b6c3c0e11e4941294bfc1857c119419b Mon Sep 17 00:00:00 2001
+From: Lukas Fleischer <lfleischer@lfos.de>
+Date: Sat, 18 Aug 2018 18:48:36 +0200
+Subject: [PATCH] jpeg-recompress: terminate early on empty bisection range
+
+Fixes issue #95.
+
+Signed-off-by: Lukas Fleischer <lfleischer@lfos.de>
+---
+ jpeg-recompress.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/jpeg-recompress.c b/jpeg-recompress.c
+index 4c284b1..126015b 100644
+--- a/jpeg-recompress.c
++++ b/jpeg-recompress.c
+@@ -437,6 +437,11 @@ int main (int argc, char **argv) {
+     for (int attempt = attempts - 1; attempt >= 0; --attempt) {
+         float metric;
+         int quality = min + (max - min) / 2;
++
++        /* Terminate early once bisection interval is a singleton. */
++        if (min == max)
++            attempt = 0;
++
+         int progressive = attempt ? 0 : !noProgressive;
+         int optimize = accurate ? 1 : (attempt ? 0 : 1);
+ 
