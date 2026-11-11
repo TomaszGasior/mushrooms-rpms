@@ -15,6 +15,7 @@ Patch2:         setuptools-pkg-resources.patch
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-packaging
+BuildRequires:  python3-pip
 Requires:       python3
 Requires:       python3-setuptools
 Recommends:     bash-completion
@@ -38,22 +39,21 @@ sed -e 's/, < [0-9.]\+//' -i setup.py
 
 
 %build
-%py3_build
+%pyproject_wheel
 
 
 %install
-%py3_install
+%pyproject_install
+%pyproject_save_files -l compose
 
 install -D -p -m 644 contrib/completion/bash/docker-compose \
    %{buildroot}%{_datadir}/bash-completion/completions/docker-compose
 
 
-%files
+%files -f %{pyproject_files}
 %license LICENSE
 %doc CHANGELOG.md README.md
 %{_bindir}/docker-compose
-%{python3_sitelib}/compose
-%{python3_sitelib}/docker_compose*.egg-info
 %{_datadir}/bash-completion/completions/docker-compose
 
 
