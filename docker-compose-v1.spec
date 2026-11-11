@@ -3,17 +3,20 @@
 
 Name:           docker-compose-v1
 Version:        1.29.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Multi-container orchestration for Docker (legacy v1)
 License:        Apache-2.0
 URL:            https://github.com/docker/compose
 Source0:        https://github.com/docker/compose/archive/%{version}.zip
 Patch0:         python-3-13-pipes-shlex.patch
 Patch1:         docker-sdk-library-v7-compat.patch
+Patch2:         setuptools-pkg-resources.patch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
+BuildRequires:  python3-packaging
 Requires:       python3
+Requires:       python3-setuptools
 Recommends:     bash-completion
 Conflicts:      docker-compose-switch
 BuildArch:      noarch
