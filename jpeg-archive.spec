@@ -6,7 +6,7 @@
 
 Name:           jpeg-archive
 Version:        2.2.0
-Release:        8%{?dist}
+Release:        9%{?dist}
 Summary:        Utilities for archiving JPEGs for long term storage
 
 License:        MIT BSD
@@ -14,6 +14,7 @@ URL:            https://github.com/danielgtaylor/%{name}
 Source0:        https://github.com/danielgtaylor/%{name}/archive/v%{version}.zip
 Source1:        https://github.com/mozilla/mozjpeg/archive/v%{mozjpeg_version}.zip
 Patch0:         mozjpeg-cmake.patch
+Patch1:         gcc-10.patch
 
 BuildRequires:  autoconf
 BuildRequires:  gcc
@@ -43,7 +44,6 @@ pushd mozjpeg-%{mozjpeg_version}
 %__cmake --install "%{__cmake_builddir}"
 popd
 
-export CFLAGS="$CFLAGS -fcommon"
 export MOZJPEG_PREFIX=$PWD/mozjpeg-%{mozjpeg_version}
 %make_build
 
@@ -60,6 +60,9 @@ export MOZJPEG_PREFIX=$PWD/mozjpeg-%{mozjpeg_version}
 
 
 %changelog
+* Wed Nov 11 2026 Tomasz Gąsior
+- Apply upstream patch for compatibility with GCC 10
+
 * Sat May 2 2026 Tomasz Gąsior
 - Packaging changes for F44
 

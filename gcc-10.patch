@@ -1,0 +1,45 @@
+From 190cd14fbdbecc7f6cfeb914a4708fd4359a5127 Mon Sep 17 00:00:00 2001
+From: Alan Jenkins <alan.christopher.jenkins@gmail.com>
+Date: Mon, 1 Aug 2022 17:21:19 +0100
+Subject: [PATCH] Fix for GCC 10 - avoid multiple definitions of variables
+ (util.h)
+
+Fixes #119
+
+> /usr/bin/ld: src/util.o:(.data+0x0): multiple definition of `VERSION';
+>  /tmp/ccSwNFWH.o:(.bss+0x28): first defined here
+> /usr/bin/ld: src/util.o:(.bss+0x0): multiple definition of `progname';
+>  /tmp/ccSwNFWH.o:(.bss+0x20): first defined here
+> collect2: error: ld returned 1 exit status
+---
+ src/util.c | 1 +
+ src/util.h | 4 ++--
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/src/util.c b/src/util.c
+index 0d84221..52959d2 100644
+--- a/src/util.c
++++ b/src/util.c
+@@ -13,6 +13,7 @@
+ #define INPUT_BUFFER_SIZE 102400
+ 
+ const char *VERSION = "2.2.0";
++const char *progname;
+ 
+ /* Print program version to stdout. */
+ void version(void) {
+diff --git a/src/util.h b/src/util.h
+index adb3eee..7bfa81e 100644
+--- a/src/util.h
++++ b/src/util.h
+@@ -11,8 +11,8 @@
+ #define MIN(a, b) ((a) < (b) ? (a) : (b))
+ #define MAX(a, b) ((a) > (b) ? (a) : (b))
+ 
+-const char *VERSION;
+-const char *progname;
++extern const char *VERSION;
++extern const char *progname;
+ 
+ // Subsampling method, which defines how much of the data from
+ // each color channel is included in the image per 2x2 block.
